@@ -1,0 +1,6 @@
+subreddit,listing,top_time,config_path,start_url,max_items,max_post_count,max_comments
+technology,top,week,configs\discovery_batch\reddit_r_technology_top_week.json,https://www.reddit.com/r/technology/top/?t=week,150,150,50
+news,top,week,configs\discovery_batch\reddit_r_news_top_week.json,https://www.reddit.com/r/news/top/?t=week,150,150,50
+worldnews,top,week,configs\discovery_batch\reddit_r_worldnews_top_week.json,https://www.reddit.com/r/worldnews/top/?t=week,150,150,50
+politics,top,week,configs\discovery_batch\reddit_r_politics_top_week.json,https://www.reddit.com/r/politics/top/?t=week,150,150,50
+games,top,week,configs\discovery_batch\reddit_r_games_top_week.json,https://www.reddit.com/r/games/top/?t=week,150,150,50

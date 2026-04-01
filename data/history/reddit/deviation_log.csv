@@ -1,0 +1,49 @@
+timestamp,topic,subreddit,kind,magnitude,surge_ratio,alive_ratio,dead_ratio,current_surge_rate,current_alive_rate,current_dead_rate,baseline_surge_alive_rate,cross_subreddit
+2026-03-31T15:00,politics_government,worldnews,mass die-off,3.73,1.37,0.84,3.73,0.25,0.5,0.375,0.595,0
+2026-03-31T15:00,ai_software,politics,unusually quiet,3.12,0.72,0.32,9.94,0.095,0.19,0.381,0.594,0
+2026-03-31T15:00,business_economy,politics,unusually quiet,2.78,0.0,0.36,0.0,0.0,0.2,0.0,0.557,0
+2026-03-31T15:00,war_geopolitics,politics,unusually quiet,2.75,0.69,0.36,18.04,0.091,0.227,0.318,0.626,0
+2026-03-31T15:00,war_geopolitics,news,unusually quiet,2.19,0.8,0.46,2.65,0.138,0.31,0.552,0.679,0
+2026-03-31T15:00,war_geopolitics,technology,SURGE SPIKE,2.17,2.17,0.67,1.88,0.167,0.333,0.333,0.497,0
+2026-03-31T15:00,general,worldnews,unusually quiet,2.1,0.0,0.48,8.54,0.0,0.273,0.364,0.573,0
+2026-03-31T15:00,politics_government,politics,unusually quiet,2.08,0.4,0.48,5.26,0.053,0.289,0.211,0.601,0
+2026-03-31T15:00,gaming_entertainment,Games,unusually quiet,1.98,0.0,0.5,1.84,0.0,0.24,0.56,0.476,0
+2026-03-31T15:00,politics_government,news,unusually quiet,1.88,0.0,0.53,1.82,0.0,0.333,0.5,0.628,0
+2026-03-31T15:00,war_geopolitics,worldnews,unusually quiet,1.84,0.41,0.54,2.67,0.065,0.355,0.145,0.652,0
+2026-03-31T15:00,general,politics,unusually quiet,1.76,1.1,0.57,5.87,0.182,0.364,0.182,0.64,0
+2026-03-31T15:00,ai_software,news,unusually quiet,1.62,1.19,0.62,1.09,0.158,0.368,0.316,0.598,0
+2026-03-31T15:00,ai_software,worldnews,unusually quiet,1.56,0.7,0.64,4.7,0.118,0.412,0.235,0.641,0
+2026-03-31T15:00,general,Games,normal,1.0,1.25,0.84,0.54,0.211,0.474,0.158,0.562,0
+2026-03-31T15:00,ai_software,Games,normal,1.0,1.26,1.35,0.48,0.167,0.667,0.167,0.495,0
+2026-03-31T15:00,general,news,normal,1.0,1.11,0.76,1.61,0.182,0.5,0.364,0.662,0
+2026-03-31T15:00,ai_software,technology,normal,1.0,0.86,0.93,1.24,0.139,0.556,0.139,0.596,0
+2026-03-31T15:00,general,technology,normal,1.0,0.54,0.74,1.07,0.053,0.421,0.158,0.572,0
+2026-03-31T15:00,hardware_devices,technology,normal,1.0,0.0,1.78,0.0,0.0,1.0,0.0,0.563,0
+2026-03-31T15:00,ai_software,politics+news+worldnews,MULTI-SUB QUIET,2.1,,,,,,,,1
+2026-03-31T15:00,war_geopolitics,politics+news+technology+worldnews,MULTI-SUB QUIET,2.07,,,,,,,,1
+2026-03-31T15:00,politics_government,politics+news,MULTI-SUB QUIET,1.98,,,,,,,,1
+2026-03-31T15:00,general,worldnews+politics,MULTI-SUB QUIET,1.93,,,,,,,,1
+2026-03-31T15:00,politics_government,worldnews,mass die-off,3.73,1.37,0.84,3.73,0.25,0.5,0.375,0.595,0
+2026-03-31T15:00,ai_software,politics,unusually quiet,3.12,0.72,0.32,9.94,0.095,0.19,0.381,0.594,0
+2026-03-31T15:00,business_economy,politics,unusually quiet,2.78,0.0,0.36,0.0,0.0,0.2,0.0,0.557,0
+2026-03-31T15:00,war_geopolitics,politics,unusually quiet,2.75,0.69,0.36,18.04,0.091,0.227,0.318,0.626,0
+2026-03-31T15:00,war_geopolitics,news,unusually quiet,2.19,0.8,0.46,2.65,0.138,0.31,0.552,0.679,0
+2026-03-31T15:00,war_geopolitics,technology,SURGE SPIKE,2.17,2.17,0.67,1.88,0.167,0.333,0.333,0.497,0
+2026-03-31T15:00,general,worldnews,unusually quiet,2.1,0.0,0.48,8.54,0.0,0.273,0.364,0.573,0
+2026-03-31T15:00,politics_government,politics,unusually quiet,2.08,0.4,0.48,5.26,0.053,0.289,0.211,0.601,0
+2026-03-31T15:00,gaming_entertainment,Games,unusually quiet,1.98,0.0,0.5,1.84,0.0,0.24,0.56,0.476,0
+2026-03-31T15:00,politics_government,news,unusually quiet,1.88,0.0,0.53,1.82,0.0,0.333,0.5,0.628,0
+2026-03-31T15:00,war_geopolitics,worldnews,unusually quiet,1.84,0.41,0.54,2.67,0.065,0.355,0.145,0.652,0
+2026-03-31T15:00,general,politics,unusually quiet,1.76,1.1,0.57,5.87,0.182,0.364,0.182,0.64,0
+2026-03-31T15:00,ai_software,news,unusually quiet,1.62,1.19,0.62,1.09,0.158,0.368,0.316,0.598,0
+2026-03-31T15:00,ai_software,worldnews,unusually quiet,1.56,0.7,0.64,4.7,0.118,0.412,0.235,0.641,0
+2026-03-31T15:00,general,Games,normal,1.0,1.25,0.84,0.54,0.211,0.474,0.158,0.562,0
+2026-03-31T15:00,ai_software,Games,normal,1.0,1.26,1.35,0.48,0.167,0.667,0.167,0.495,0
+2026-03-31T15:00,general,news,normal,1.0,1.11,0.76,1.61,0.182,0.5,0.364,0.662,0
+2026-03-31T15:00,ai_software,technology,normal,1.0,0.86,0.93,1.24,0.139,0.556,0.139,0.596,0
+2026-03-31T15:00,general,technology,normal,1.0,0.54,0.74,1.07,0.053,0.421,0.158,0.572,0
+2026-03-31T15:00,hardware_devices,technology,normal,1.0,0.0,1.78,0.0,0.0,1.0,0.0,0.563,0
+2026-03-31T15:00,ai_software,politics+news+worldnews,MULTI-SUB QUIET,2.1,,,,,,,,1
+2026-03-31T15:00,war_geopolitics,politics+news+technology+worldnews,MULTI-SUB QUIET,2.07,,,,,,,,1
+2026-03-31T15:00,politics_government,politics+news,MULTI-SUB QUIET,1.98,,,,,,,,1
+2026-03-31T15:00,general,worldnews+politics,MULTI-SUB QUIET,1.93,,,,,,,,1

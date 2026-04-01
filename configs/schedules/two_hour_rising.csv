@@ -1,0 +1,6 @@
+subreddit,listing,top_time,config_path,start_url,max_items,max_post_count,max_comments
+technology,rising,,configs\discovery_batch\reddit_r_technology_rising.json,https://www.reddit.com/r/technology/rising/,150,150,30
+news,rising,,configs\discovery_batch\reddit_r_news_rising.json,https://www.reddit.com/r/news/rising/,150,150,30
+worldnews,rising,,configs\discovery_batch\reddit_r_worldnews_rising.json,https://www.reddit.com/r/worldnews/rising/,150,150,30
+politics,rising,,configs\discovery_batch\reddit_r_politics_rising.json,https://www.reddit.com/r/politics/rising/,150,150,30
+games,rising,,configs\discovery_batch\reddit_r_games_rising.json,https://www.reddit.com/r/games/rising/,150,150,30

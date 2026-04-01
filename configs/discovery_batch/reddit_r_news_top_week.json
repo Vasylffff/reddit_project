@@ -1,0 +1,14 @@
+{
+  "startUrls": [
+    {
+      "url": "https://www.reddit.com/r/news/top/?t=week"
+    }
+  ],
+  "sort": "top",
+  "maxItems": 100,
+  "maxPostCount": 100,
+  "maxComments": 0,
+  "maxCommunitiesCount": 1,
+  "maxUserCount": 1,
+  "scrollTimeout": 40
+}

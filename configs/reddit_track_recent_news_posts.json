@@ -1,0 +1,70 @@
+{
+  "startUrls": [
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s45mpp/russian_forces_attack_slobidskyi_district_of/"
+    },
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s45k1u/iran_allowing_malaysian_vessels_to_pass_in_strait/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s45g56/openai_shelves_erotic_chatbot_indefinitely/"
+    },
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s45fc5/iran_oil_revenue_soars_as_its_the_only_exporter/"
+    },
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s45f1w/uk_facing_biggest_economic_hit_from_iran_war_of/"
+    },
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s45ewr/argentina_mileis_approval_rating_hits_new_low_as/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s45a7q/supreme_court_rules_isps_arent_liable_for_user/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s457or/deloitte_makes_ai_mistake_again_this_time_in/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s456fj/meta_aws_blame_human_error_after_ai_agents_go/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s45541/eu_probes_snapchat_for_failing_to_protect_kids/"
+    },
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s454ug/eu_probes_snapchat_for_failing_to_protect_kids/"
+    },
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s44yvx/fighting_resumes_between_pakistan_and_afghanistan/"
+    },
+    {
+      "url": "https://www.reddit.com/r/news/comments/1s44y6r/uk_authorises_military_to_board_russian_shadow/"
+    },
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s44uyp/greece_plans_further_minimum_wage_rise_amid_iran/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s44sm2/agentic_maturity_models_focus_on_the_wrong_thing/"
+    },
+    {
+      "url": "https://www.reddit.com/r/news/comments/1s44qpn/exclusive_us_links_security_guarantees_to_ukraine/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s442o9/marriage_over_100000_down_the_drain_the_ai_users/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s43tta/german_army_eyes_ai_tools_to_expedite_wartime/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s43rsu/quantum_computers_take_a_step_into_real_materials/"
+    },
+    {
+      "url": "https://www.reddit.com/r/news/comments/1s43hl7/i_have_no_recollection_of_anything_epstein/"
+    }
+  ],
+  "maxItems": 420,
+  "maxPostCount": 20,
+  "maxComments": 20,
+  "maxCommunitiesCount": 3,
+  "maxUserCount": 1,
+  "scrollTimeout": 40
+}

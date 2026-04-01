@@ -1,0 +1,6 @@
+schedule_name,cadence_label,run_hours,manifest_path,job_count,subreddit_count,description
+hourly_new,hourly,*,configs\schedules\hourly_new.csv,5,5,Capture new posts entering each subreddit every hour.
+two_hour_rising,every_2_hours,"0,2,4,6,8,10,12,14,16,18,20,22",configs\schedules\two_hour_rising.csv,5,5,Capture posts that are starting to gain momentum every two hours.
+four_hour_hot,every_4_hours,"0,4,8,12,16,20",configs\schedules\four_hour_hot.csv,5,5,Capture actively popular posts every four hours.
+twice_daily_top_day,twice_daily,"0,12",configs\schedules\twice_daily_top_day.csv,5,5,Capture the strongest daily posts twice per day.
+daily_top_week,daily,0,configs\schedules\daily_top_week.csv,5,5,Capture the strongest weekly posts once per day.

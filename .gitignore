@@ -1,0 +1,42 @@
+.env
+.venv/
+.tmp/
+logs/
+__pycache__/
+*.pyc
+
+# --- Raw / processed collector output (large, regenerable) ---
+data/raw/*
+!data/raw/.gitkeep
+!data/raw/reddit_json/
+!data/raw/reddit_json/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+!data/processed/reddit_json/
+!data/processed/reddit_json/.gitkeep
+
+# --- History: keep small CSVs, exclude large snapshot files ---
+data/history/*
+!data/history/.gitkeep
+!data/history/reddit/
+data/history/reddit/post_snapshots.csv
+data/history/reddit/post_snapshots_pre_patch.csv
+data/history/reddit/comment_snapshots.csv
+data/history/reddit/subreddit_snapshots.csv
+data/history/reddit/history.db
+data/history/reddit/snapshot_catalog.csv
+data/history/reddit/post_lifecycles.csv
+
+# --- Tracking pools: regenerable from snapshots ---
+data/tracking/*
+!data/tracking/.gitkeep
+
+# --- Models: keep small outputs, exclude huge prediction tables ---
+data/models/*
+!data/models/.gitkeep
+!data/models/reddit/
+!data/models/reddit/.gitkeep
+data/models/reddit/prediction_all_snapshots.csv
+data/models/reddit/prediction_next_hour.csv
+data/models/reddit/prediction_sequences.csv
+data/models/reddit/post_timeline_points.csv

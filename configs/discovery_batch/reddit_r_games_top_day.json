@@ -1,0 +1,14 @@
+{
+  "startUrls": [
+    {
+      "url": "https://www.reddit.com/r/games/top/?t=day"
+    }
+  ],
+  "sort": "top",
+  "maxItems": 150,
+  "maxPostCount": 150,
+  "maxComments": 0,
+  "maxCommunitiesCount": 1,
+  "maxUserCount": 1,
+  "scrollTimeout": 40
+}

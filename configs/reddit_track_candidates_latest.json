@@ -1,0 +1,70 @@
+{
+  "startUrls": [
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s5jyb7/10_americans_injured_in_iranian_attack_on_saudi/"
+    },
+    {
+      "url": "https://www.reddit.com/r/politics/comments/1s5oz77/jd_vance_reveals_he_thinks_aliens_are_actually/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s5ozco/how_to_keep_ice_agents_out_of_your_phone_at_the/"
+    },
+    {
+      "url": "https://www.reddit.com/r/news/comments/1s5uotb/more_than_400_hezbollah_fighters_killed_in_new/"
+    },
+    {
+      "url": "https://www.reddit.com/r/Games/comments/1s5hw45/borderlands_4s_new_30_expansion_pack_isnt_winning/"
+    },
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s5p1dy/us_may_deploy_up_to_17000_troops_near_iran_as_war/"
+    },
+    {
+      "url": "https://www.reddit.com/r/politics/comments/1s5kutn/trump_calls_strait_of_hormuz_the_strait_of_trump/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s5tgiu/the_shocking_speed_of_chinas_scientific_rise/"
+    },
+    {
+      "url": "https://www.reddit.com/r/news/comments/1s59i54/looksmaxxing_influencer_clavicular_arrested_on/"
+    },
+    {
+      "url": "https://www.reddit.com/r/Games/comments/1s5afr5/jason_schreier_bloomberg_it_sucks_to_work_in_the/"
+    },
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s5tmvi/were_no_qatar_will_beat_the_hell_out_of_them/"
+    },
+    {
+      "url": "https://www.reddit.com/r/politics/comments/1s5elrr/wait_did_the_democrats_just_win_a_government/"
+    },
+    {
+      "url": "https://www.reddit.com/r/news/comments/1s5n710/twelve_us_troops_wounded_in_iran_strike_on_base/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s5onxq/tiny_nuclear_reactors_could_be_the_key_to/"
+    },
+    {
+      "url": "https://www.reddit.com/r/Games/comments/1s566hs/sources_nintendo_is_planning_a_new_star_fox_and_a/"
+    },
+    {
+      "url": "https://www.reddit.com/r/worldnews/comments/1s5t2gr/starmer_reaffirms_uk_will_not_join_iran_war/"
+    },
+    {
+      "url": "https://www.reddit.com/r/politics/comments/1s5lija/rubio_iran_may_own_the_strait_now_and_thats_a/"
+    },
+    {
+      "url": "https://www.reddit.com/r/news/comments/1s4qn4q/trump_signature_to_appear_on_us_currency_ending/"
+    },
+    {
+      "url": "https://www.reddit.com/r/technology/comments/1s594yl/doj_confirms_fbi_director_kash_patels_personal/"
+    },
+    {
+      "url": "https://www.reddit.com/r/Games/comments/1s5auce/we_were_there_in_the_80s_for_the_crash_and_this/"
+    }
+  ],
+  "maxItems": 420,
+  "maxPostCount": 20,
+  "maxComments": 20,
+  "maxCommunitiesCount": 5,
+  "maxUserCount": 1,
+  "scrollTimeout": 40
+}
