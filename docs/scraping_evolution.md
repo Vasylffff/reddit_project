@@ -98,13 +98,48 @@ Added five collection cadences to capture posts at different lifecycle stages:
 
 This meant the same post could appear in "new" at hour 1, "rising" at hour 3, and "hot" at hour 6 — giving multiple snapshots automatically.
 
-### 4b: Comment collection (March 28-29)
+### 4b: Comment collection — Version 1 (March 28-29)
 
-Added comment scraping to `collect_reddit_free.py`:
+Initial comment scraping added to `collect_reddit_free.py`:
 - Fetches individual post JSON (e.g. `reddit.com/r/technology/comments/{id}.json`)
 - Extracts comment text, author, upvotes, creation time
-- Enabled VADER sentiment analysis and Gini coefficient features
-- Limited to top-level comments (Reddit JSON nests replies but free endpoint doesn't paginate deeply)
+- Limited to top-level comments only — Reddit JSON nests replies but the free endpoint returns a flat structure without deep pagination
+
+**What this enabled:**
+- Raw comment counts per post (previously only `num_comments` metadata, now actual comment content)
+- Comment text available for NLP analysis
+
+**What was still missing:**
+- No sentiment scoring yet
+- No engagement distribution analysis
+- Reply threading not available (99% of reply counts showed zero)
+- No comment velocity tracking (comments per hour over time)
+
+### 4b.2: Comment features — VADER sentiment (April 1)
+
+972,353 comments scored using VADER sentiment analyser:
+- Each comment receives a compound score from -1 (negative) to +1 (positive)
+- Aggregated per post: average sentiment, sentiment variance, proportion negative/positive
+- Key finding: negative sentiment correlates with longer post survival (alive avg -0.006 vs dead +0.045)
+- Initial classifier using sentiment achieved 74.5% accuracy — but feature importance showed comment *count* accounted for 74%, meaning the model was counting, not analysing
+
+### 4b.3: Comment features — Gini coefficient (April 1)
+
+Comment upvote distribution analysis added:
+- Gini coefficient measures how concentrated or diffuse the upvotes are across comments
+- High Gini (0.63-0.72): a few comments dominate — community consensus around a viewpoint
+- Low Gini (0.36): diffuse attention, unfocused discussion
+- Became the strongest single post-level predictor at 46% feature importance
+- Classifier accuracy improved from 74.5% to 77.6%
+
+### 4b.4: Comment features — K-means clustering (April 1)
+
+Unsupervised clustering on comment text:
+- TF-IDF vectorisation of comment text
+- K-means clustering to identify engagement pattern types
+- Used alongside VADER to distinguish types of negative engagement (angry debate vs spam vs trolling)
+
+**Current comment dataset:** 972,353 comments with text, author, upvotes, creation time, VADER scores, and post-level Gini coefficients
 
 ### 4c: Tracking pool (March 31 — Codex refactoring)
 
