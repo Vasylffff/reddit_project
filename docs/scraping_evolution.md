@@ -115,31 +115,16 @@ Initial comment scraping added to `collect_reddit_free.py`:
 - Reply threading not available (99% of reply counts showed zero)
 - No comment velocity tracking (comments per hour over time)
 
-### 4b.2: Comment features — VADER sentiment (April 1)
+**What comment collection enabled (analysis, not scraping):**
 
-972,353 comments scored using VADER sentiment analyser:
-- Each comment receives a compound score from -1 (negative) to +1 (positive)
-- Aggregated per post: average sentiment, sentiment variance, proportion negative/positive
-- Key finding: negative sentiment correlates with longer post survival (alive avg -0.006 vs dead +0.045)
-- Initial classifier using sentiment achieved 74.5% accuracy — but feature importance showed comment *count* accounted for 74%, meaning the model was counting, not analysing
+The raw comment data was later processed through several analysis layers (described in the analysis scripts, not the collection system):
+- **VADER sentiment scoring** (April 1) — 972,353 comments scored. Negative sentiment correlates with longer post survival.
+- **Gini coefficient** (April 1) — Comment upvote distribution analysis. Became the strongest post-level predictor at 46% feature importance.
+- **K-means clustering** (April 1) — TF-IDF + unsupervised clustering to identify engagement pattern types.
 
-### 4b.3: Comment features — Gini coefficient (April 1)
+These are analysis features built on top of the collected data, not modifications to the scraping system itself.
 
-Comment upvote distribution analysis added:
-- Gini coefficient measures how concentrated or diffuse the upvotes are across comments
-- High Gini (0.63-0.72): a few comments dominate — community consensus around a viewpoint
-- Low Gini (0.36): diffuse attention, unfocused discussion
-- Became the strongest single post-level predictor at 46% feature importance
-- Classifier accuracy improved from 74.5% to 77.6%
-
-### 4b.4: Comment features — K-means clustering (April 1)
-
-Unsupervised clustering on comment text:
-- TF-IDF vectorisation of comment text
-- K-means clustering to identify engagement pattern types
-- Used alongside VADER to distinguish types of negative engagement (angry debate vs spam vs trolling)
-
-**Current comment dataset:** 972,353 comments with text, author, upvotes, creation time, VADER scores, and post-level Gini coefficients
+**Current comment dataset:** 972,353 comments with text, author, upvotes, and creation time.
 
 ### 4c: Tracking pool (March 31 — Codex refactoring)
 
@@ -163,9 +148,9 @@ Split observation into two lanes:
 | >= 3 hours | Magnitude is unreliable | Flag `is_collection_gap = 1`. Still recalculate (better than zero) |
 | Zero delta, same upvotes | Reddit upvote fuzzing | Flag `is_reddit_fuzzing = 1`. Keep velocity = 0 (it's correct) |
 
-### 4e: Two-machine collection (April 7)
+### 4e: Two-machine collection (set up earlier, merged April 7)
 
-A second machine was set up running the same Task Scheduler job. Data from both machines was merged:
+A second machine was set up running the same Task Scheduler job during the project. On April 7, data from both machines was merged for the first time on this machine:
 - Machine 1: 3,278 raw JSON files
 - Machine 2: 4,427 raw JSON files  
 - Merged: 5,140 unique files (1,862 were new from machine 2)
