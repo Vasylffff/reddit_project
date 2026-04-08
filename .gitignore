@@ -40,3 +40,4 @@ data/models/reddit/prediction_all_snapshots.csv
 data/models/reddit/prediction_next_hour.csv
 data/models/reddit/prediction_sequences.csv
 data/models/reddit/post_timeline_points.csv
+*.zip

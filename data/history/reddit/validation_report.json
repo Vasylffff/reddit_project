@@ -1,0 +1,28 @@
+{
+  "generated_at": "2026-04-07T16:03:51.981912+00:00",
+  "history_dir": "data\\history\\reddit",
+  "summary": {
+    "post_snapshot_rows": 216944,
+    "post_lifecycle_rows": 6826,
+    "analysis_focus_rows": 1777,
+    "tracking_candidate_rows": 75,
+    "subreddits": {
+      "games": 30272,
+      "news": 47790,
+      "politics": 40553,
+      "technology": 48294,
+      "worldnews": 50035
+    },
+    "latest_state_counts": {
+      "alive": 1241,
+      "cooling": 1038,
+      "dead": 2167,
+      "dying": 1390,
+      "emerging": 232,
+      "surging": 304,
+      "unknown": 454
+    }
+  },
+  "issues": [],
+  "status": "ok"
+}

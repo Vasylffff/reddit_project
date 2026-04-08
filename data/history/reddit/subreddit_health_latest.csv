@@ -1,0 +1,6 @@
+subreddit,health_score,health_label,forecast,upvote_slope,comment_slope,new_post_slope,dead_post_share,retention_rate,avg_upvotes,avg_comments,avg_new_posts_window,latest_snapshot_time,latest_snapshot_id,computed_at
+Games,33.7,critical,at risk,-20.603,-0.953,-0.5,0.5,4.0,307.95,95.63,0.6,2026-04-07T08:00:25.811585+00:00,20260407_080003_free_public_json_games_new,2026-04-07T16:03:39.006663+00:00
+news,66.79,declining,declining,-188.052,-3.721,1.8,0.22,0.94,5436.85,321.92,3.6,2026-04-07T15:44:38.313150+00:00,20260407_154228_free_public_json_news_new,2026-04-07T16:03:39.043670+00:00
+politics,49.0,critical,at risk,-440.9475,-31.2605,4.3,0.04,0.73,707.2,77.74,9.2,2026-04-07T12:10:28.062557+00:00,20260407_110006_free_public_json_politics_new,2026-04-07T16:03:39.075216+00:00
+technology,57.42,declining,declining,-189.292,-16.563,2.3,0.14,0.91,1293.38,83.51,4.0,2026-04-07T15:42:30.725231+00:00,20260407_154228_free_public_json_technology_new,2026-04-07T16:03:39.110644+00:00
+worldnews,69.5,declining,stable,-82.391,1.491,2.9,0.065,0.86,1076.34,151.84,9.2,2026-04-07T13:12:44.353525+00:00,20260407_130007_free_public_json_worldnews_new,2026-04-07T16:03:39.149292+00:00
