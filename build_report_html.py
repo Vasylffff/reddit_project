@@ -144,13 +144,15 @@ Vasyl Shcherbatykh<br><br>
 
 <p><strong>Iteration 4: Post lifecycle states.</strong> Each post snapshot was assigned a state based on upvote velocity relative to per-subreddit thresholds: surging (above surging threshold), alive (above alive threshold), cooling (positive but declining), dying (near zero), or dead (no engagement). These states serve as natural labels for classification without manual annotation. I asked <em>"we need to identify much earlier the dead post"</em> and explored whether velocity difference patterns could detect early death. The state model was later redesigned during the Codex refactoring session to provide earlier warning through a more conservative "dead" definition.</p>
 
-<p><strong>Iteration 5: Comment-based prediction.</strong> I asked Claude Code: <em>"can we predict post flow with comments?"</em> This led to two major feature additions. First, 972,353 comments were scored using the VADER sentiment analyser (Hutto and Gilbert, 2014). The finding was counterintuitive: negative comment sentiment correlates with longer post survival (alive posts average sentiment -0.006 vs dead posts +0.045). Controversy drives engagement; apathy kills posts. The initial classifier using sentiment achieved 74.5%% accuracy, but feature importance analysis revealed that comment count alone accounted for 74%% &mdash; the model was counting comments, not analysing sentiment.</p>
+<p><strong>Iteration 5: Markov chain post flow predictor.</strong> On March 26 I asked <em>"i mean we want to predict the flow of the news through reddit, is this possible?"</em> and on March 31 <em>"can we predict post flow?"</em> This led to predict_post_flow.py, a multi-layer Markov chain predictor. The core idea: given a post's current state (surging, alive, cooling, dying, dead), what is the probability of transitioning to each other state in the next hour? Transition matrices were computed from 116,000 observed state transitions, conditioned on subreddit, age bucket, and velocity bucket. The system uses a three-level fallback for sparse data: first the full key (state + age + velocity), then dropping velocity, then a global fallback across all subreddits. This was the first working prediction model in the project &mdash; it could project a post's trajectory 24 hours forward by chaining hourly transitions. However, because Markov chains converge to equilibrium, predictions beyond ~10 transitions became indistinguishable regardless of starting state. This limitation motivated the shift to Random Forest classifiers in later iterations.</p>
 
-<p><strong>Iteration 6: Comment engagement features (Gini coefficient).</strong> The Gini coefficient measures how comment upvotes are distributed within a post's discussion. High Gini (0.63&ndash;0.72) means a few comments dominate &mdash; community consensus. Low Gini (0.36) means diffuse, unfocused discussion. This became the strongest single post-level predictor at 46%% feature importance, surpassing all velocity and upvote features. Classifier accuracy improved from 74.5%% to 77.6%% with this single feature.</p>
+<p><strong>Iteration 6: Comment-based prediction.</strong> I asked Claude Code: <em>"can we predict post flow with comments?"</em> This led to two major feature additions. First, 972,353 comments were scored using the VADER sentiment analyser (Hutto and Gilbert, 2014). The finding was counterintuitive: negative comment sentiment correlates with longer post survival (alive posts average sentiment -0.006 vs dead posts +0.045). Controversy drives engagement; apathy kills posts. The initial classifier using sentiment achieved 74.5%% accuracy, but feature importance analysis revealed that comment count alone accounted for 74%% &mdash; the model was counting comments, not analysing sentiment.</p>
 
-<p><strong>Iteration 7: Per-subreddit models.</strong> After seeing the initial 64%% overall accuracy, I noticed that r/politics (72%%) performed much better than r/Games, and linked this to data volume: <em>"72 for politics? wowy and we see it's related to how much data it is."</em> This led to replacing the global model with per-subreddit classifiers. r/politics reached 81%% accuracy while r/Games reached 64%%. r/politics posts have an average lifecycle of 11 hours; r/Games posts survive 49 hours.</p>
+<p><strong>Iteration 7: Comment engagement features (Gini coefficient).</strong> The Gini coefficient measures how comment upvotes are distributed within a post's discussion. High Gini (0.63&ndash;0.72) means a few comments dominate &mdash; community consensus. Low Gini (0.36) means diffuse, unfocused discussion. This became the strongest single post-level predictor at 46%% feature importance, surpassing all velocity and upvote features. Classifier accuracy improved from 74.5%% to 77.6%% with this single feature.</p>
 
-<p><strong>Iteration 8: Multi-horizon survival prediction.</strong> I asked about predicting further ahead: <em>"after a couple of hours of observation, would we have general understanding would people discuss it on good level or not?"</em> This led to building seventeen binary classifiers for 1 hour to 7 days:</p>
+<p><strong>Iteration 8: Per-subreddit models.</strong> After seeing the initial 64%% overall accuracy, I noticed that r/politics (72%%) performed much better than r/Games, and linked this to data volume: <em>"72 for politics? wowy and we see it's related to how much data it is."</em> This led to replacing the global model with per-subreddit classifiers. r/politics reached 81%% accuracy while r/Games reached 64%%. r/politics posts have an average lifecycle of 11 hours; r/Games posts survive 49 hours.</p>
+
+<p><strong>Iteration 9: Multi-horizon survival prediction.</strong> I asked about predicting further ahead: <em>"after a couple of hours of observation, would we have general understanding would people discuss it on good level or not?"</em> This led to building seventeen binary classifiers for 1 hour to 7 days:</p>
 
 <table>
 <tr><th>Horizon</th><th>ROC AUC</th><th>Accuracy</th></tr>
@@ -164,42 +166,42 @@ Vasyl Shcherbatykh<br><br>
 
 <p>At 7 days, accuracy paradoxically rises to 85%% while ROC drops to 0.57 &mdash; predicting "everything dies" achieves high accuracy but zero discriminative power. This demonstrates why ROC AUC is more appropriate than accuracy for imbalanced classification.</p>
 
-<p><strong>Iteration 9: Surging and dead detection.</strong> Specialised binary classifiers for specific states achieved the project's strongest post-level results: surging detection at 0.987 ROC AUC and dead detection at 0.945. State rise prediction achieved 0.947 ROC and barely decayed to 0.926 at 24 hours. Rise is more predictable than fall because it requires detectable signals; falling is the absence of signal.</p>
+<p><strong>Iteration 10: Surging and dead detection.</strong> Specialised binary classifiers for specific states achieved the project's strongest post-level results: surging detection at 0.987 ROC AUC and dead detection at 0.945. State rise prediction achieved 0.947 ROC and barely decayed to 0.926 at 24 hours. Rise is more predictable than fall because it requires detectable signals; falling is the absence of signal.</p>
 
-<p><strong>Iteration 10: Scenario-based prediction and anchoring.</strong> I proposed the idea of injecting external assumptions: <em>"what if we suggested a constant at particular date and parameters that will affect the flow?"</em> This became the scenario layer in predict_post_flow.py, where users can specify event assumptions (quiet, normal, moderate, major, breaking) that shift the initial state distribution. An anchor layer was added to replace historical distributions with actual 2-hour observations when available.</p>
+<p><strong>Iteration 11: Scenario-based prediction and anchoring.</strong> I proposed the idea of injecting external assumptions: <em>"what if we suggested a constant at particular date and parameters that will affect the flow?"</em> This became the scenario layer in predict_post_flow.py, where users can specify event assumptions (quiet, normal, moderate, major, breaking) that shift the initial state distribution. An anchor layer was added to replace historical distributions with actual 2-hour observations when available.</p>
 
-<p><strong>Iteration 11: Post outcome and time-to-death.</strong> predict_post_outcome.py combined empirical growth multipliers per subreddit with state transition matrices from 116,000 observed transitions to produce pop/flop probabilities with estimated peak upvote range. predict_time_to_death.py achieved R&sup2;=0.459 with MAE of 9.1 hours. The top feature was states_seen_count (30%%) &mdash; posts that had been through more state transitions were more predictable.</p>
+<p><strong>Iteration 12: Post outcome and time-to-death.</strong> predict_post_outcome.py combined empirical growth multipliers per subreddit with state transition matrices from 116,000 observed transitions to produce pop/flop probabilities with estimated peak upvote range. predict_time_to_death.py achieved R&sup2;=0.459 with MAE of 9.1 hours. The top feature was states_seen_count (30%%) &mdash; posts that had been through more state transitions were more predictable.</p>
 
-<p><strong>Iteration 12: Cross-subreddit success prediction.</strong> 1,305 detected cross-posts were analysed using title similarity matching. The politics&rarr;news route had 72%% success rate. worldnews broke stories first 516 times. Median propagation time: 11.1 hours.</p>
+<p><strong>Iteration 13: Cross-subreddit success prediction.</strong> 1,305 detected cross-posts were analysed using title similarity matching. The politics&rarr;news route had 72%% success rate. worldnews broke stories first 516 times. Median propagation time: 11.1 hours.</p>
 
-<p><strong>Iteration 13: Pipeline refactoring (Codex session 2).</strong> The tracking system was split into two lanes: a fixed cohort for prediction and a rolling shortlist for live monitoring. This separation was critical because a rolling pool biases tracking toward already-strong posts. The lifecycle state model was redesigned. Scheduler BOM bugs were fixed.</p>
+<p><strong>Iteration 14: Pipeline refactoring (Codex session 2).</strong> The tracking system was split into two lanes: a fixed cohort for prediction and a rolling shortlist for live monitoring. This separation was critical because a rolling pool biases tracking toward already-strong posts. The lifecycle state model was redesigned. Scheduler BOM bugs were fixed.</p>
 
 <h2>Phase 3: Topic Lifecycle Prediction (April 7&ndash;8)</h2>
 
 <p>Post-level prediction worked well at short horizons but degraded beyond 24 hours. I wanted to predict <em>general</em> flow &mdash; not individual posts but the overall story. This motivated the shift to topic-level prediction, tracking how stories emerge and spread regardless of which individual posts carry them.</p>
 
-<p><strong>Iteration 14: Co-occurrence pair detection.</strong> Two-word pairs from the same title represent specific stories. "birthright+citizenship" is a Supreme Court case. "russian+tanker" is a naval incident. Temporal validation: 0.813 ROC AUC.</p>
+<p><strong>Iteration 15: Co-occurrence pair detection.</strong> Two-word pairs from the same title represent specific stories. "birthright+citizenship" is a Supreme Court case. "russian+tanker" is a naval incident. Temporal validation: 0.813 ROC AUC.</p>
 
 """ + img_base64("fig1_topic_trajectories.png") + """
 <p class="caption">Figure 3: Topic lifecycle trajectories. Ongoing stories (Hormuz Strait) show repeated surges. One-shot events (Easter+Trump) spike once and die.</p>
 
-<p><strong>Iteration 15: Content-agnostic detection.</strong> The same algorithm detected: "official+trailer" (122 posts, game announcements), "hormuz+strait" (252 posts, geopolitical crisis), "crimson+desert" (65 posts, game launch), "media+social" (127 posts, tech policy). The model operates on engagement patterns alone.</p>
+<p><strong>Iteration 16: Content-agnostic detection.</strong> The same algorithm detected: "official+trailer" (122 posts, game announcements), "hormuz+strait" (252 posts, geopolitical crisis), "crimson+desert" (65 posts, game launch), "media+social" (127 posts, tech policy). The model operates on engagement patterns alone.</p>
 
-<p><strong>Iteration 16: Growth peak detection.</strong> Predict whether a topic has peaked or will keep growing. ROC AUC: 0.958. Dominant features: post growth day-over-day (52.7%%) and upvote growth (38.1%%).</p>
+<p><strong>Iteration 17: Growth peak detection.</strong> Predict whether a topic has peaked or will keep growing. ROC AUC: 0.958. Dominant features: post growth day-over-day (52.7%%) and upvote growth (38.1%%).</p>
 
-<p><strong>Iteration 17: Topic death prediction.</strong> "Will this topic die tomorrow?" ROC AUC: 0.890. Top features: post count (46.1%%), subreddit coverage (17.1%%).</p>
+<p><strong>Iteration 18: Topic death prediction.</strong> "Will this topic die tomorrow?" ROC AUC: 0.890. Top features: post count (46.1%%), subreddit coverage (17.1%%).</p>
 
-<p><strong>Iteration 18: Death speed classification.</strong> Quick death (0&ndash;1 days) vs slow death (2+ days). ROC AUC: 0.996. Decisive feature: decline rate on day after peak (67.8%%).</p>
+<p><strong>Iteration 19: Death speed classification.</strong> Quick death (0&ndash;1 days) vs slow death (2+ days). ROC AUC: 0.996. Decisive feature: decline rate on day after peak (67.8%%).</p>
 
 """ + img_base64("fig5_pipeline_summary.png") + """
 <p class="caption">Figure 4: Complete topic lifecycle prediction pipeline. Green = excellent (&gt;0.9), orange = good (&gt;0.8).</p>
 
-<p><strong>Iteration 19: Subreddit spread prediction.</strong> Will a topic appear in a new subreddit tomorrow? r/politics: 0.756 ROC AUC. r/politics breaks stories first (47,580 times), not r/news. Most common route: news &rarr; worldnews (2,354 times).</p>
+<p><strong>Iteration 20: Subreddit spread prediction.</strong> Will a topic appear in a new subreddit tomorrow? r/politics: 0.756 ROC AUC. r/politics breaks stories first (47,580 times), not r/news. Most common route: news &rarr; worldnews (2,354 times).</p>
 
 """ + img_base64("fig8_subreddit_spread.png") + """
 <p class="caption">Figure 5: Left: which subreddit breaks stories first. Right: most common cross-subreddit spread routes.</p>
 
-<p><strong>Iteration 20: Ongoing story vs one-shot event.</strong> When a topic drops, will it come back? ROC AUC: 0.970. Strongest feature: multiple peaks (21.5%% importance, 15.5x ratio).</p>
+<p><strong>Iteration 21: Ongoing story vs one-shot event.</strong> When a topic drops, will it come back? ROC AUC: 0.970. Strongest feature: multiple peaks (21.5%% importance, 15.5x ratio).</p>
 
 <table>
 <tr><th>Signal</th><th>Ongoing story</th><th>One-shot event</th><th>Ratio</th></tr>
@@ -212,14 +214,14 @@ Vasyl Shcherbatykh<br><br>
 """ + img_base64("fig12_ongoing_vs_oneshot.png") + """
 <p class="caption">Figure 6: Feature ratios distinguishing ongoing stories from one-shot events.</p>
 
-<p><strong>Iteration 21: Topic death definition.</strong> 1-day definition has 13.1%% false-death rate. Topics peaking at 8&ndash;11 posts revive 44.8%% of the time. Two-consecutive-day definition reduces false deaths to 6.8%%.</p>
+<p><strong>Iteration 22: Topic death definition.</strong> 1-day definition has 13.1%% false-death rate. Topics peaking at 8&ndash;11 posts revive 44.8%% of the time. Two-consecutive-day definition reduces false deaths to 6.8%%.</p>
 
 """ + img_base64("fig6_revival_rates.png") + """
 <p class="caption">Figure 7: Left: false death rates by definition. Right: revival rates by topic size.</p>
 
-<p><strong>Iteration 22: Noise filter.</strong> 98.6%% of word pairs never grow. At 99%% confidence, filters out 87%% of pairs with 99.5%% precision. ROC AUC: 0.824.</p>
+<p><strong>Iteration 23: Noise filter.</strong> 98.6%% of word pairs never grow. At 99%% confidence, filters out 87%% of pairs with 99.5%% precision. ROC AUC: 0.824.</p>
 
-<p><strong>Iteration 23: Model comparison and hyperparameter tuning.</strong></p>
+<p><strong>Iteration 24: Model comparison and hyperparameter tuning.</strong></p>
 
 """ + img_base64("fig7_model_heatmap.png") + """
 <p class="caption">Figure 8: Model performance across all tasks. Bold = best per task. No single model dominates.</p>

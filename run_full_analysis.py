@@ -43,7 +43,7 @@ conn = sqlite3.connect(DB_PATH, timeout=30)
 rows = conn.execute("""SELECT DISTINCT p.post_id, p.title, substr(p.snapshot_time_utc,1,10) as day,
        l.max_upvotes, l.subreddit, l.max_comments,
        p.upvote_velocity_per_hour, p.comment_velocity_per_hour, p.activity_state,
-       p.upvotes_at_snapshot, p.comments_at_snapshot
+       p.upvotes_at_snapshot
 FROM post_snapshots p JOIN post_lifecycles l ON p.post_id=l.post_id
 WHERE p.title IS NOT NULL AND l.max_upvotes IS NOT NULL""").fetchall()
 
@@ -61,7 +61,7 @@ sub_states = defaultdict(lambda: defaultdict(int))
 hourly_counts = defaultdict(lambda: defaultdict(int))
 
 seen = set()
-for pid, title, day, max_up, sub, max_com, vel, cvel, state, up_at, com_at in rows:
+for pid, title, day, max_up, sub, max_com, vel, cvel, state, up_at in rows:
     key = (pid, day)
     if key in seen:
         continue
