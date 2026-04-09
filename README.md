@@ -127,7 +127,9 @@ Self-collected over 13 days (26 March – 7 April 2026) using Reddit's free publ
 
 The full `data/` folder is not in git (files are 100MB–600MB). Download from OneDrive:
 
-**[Download data folder](https://qmulprod-my.sharepoint.com/:f:/g/personal/ap25150_qmul_ac_uk/IgCrPEbEU-ShRL7wNRfmOlZcAfQOlu9h5u4LOnrz3c2r_mA?email=v.shcherbatykh%40se25.qmul.ac_uk&e=zONS93)**
+**[Download data (GitHub Release — 168MB zip)](https://github.com/Vasylffff/reddit_project/releases/tag/reddit)** — post snapshots, comment snapshots, subreddit metrics, post lifecycles
+
+Or from OneDrive: **[Download data folder](https://qmulprod-my.sharepoint.com/:f:/g/personal/ap25150_qmul_ac_uk/IgCrPEbEU-ShRL7wNRfmOlZcAfQOlu9h5u4LOnrz3c2r_mA?email=v.shcherbatykh%40se25.qmul.ac_uk&e=zONS93)**
 
 ---
 
